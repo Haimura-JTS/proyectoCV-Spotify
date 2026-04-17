@@ -1,29 +1,91 @@
-*{
+/* ------------------------------
+   ESTILO GENERAL - SPOTIFY STYLE
+--------------------------------*/
+
+body {
+    background-color: #121212;
+    color: #FFFFFF;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-button{
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
-    border: none;
-    margin: 2px;
-    font-size: 30px;
-    font-weight: 250;
-
+/* Contenedores principales */
+section, header, footer {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
 }
 
-
-body{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    background-color: #ffffff;
-    
+/* Títulos */
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-::-webkit-input-placeholder{
-    color:white;
+h1 {
+    font-size: 3rem;
+    color: #1DB954; /* Verde Spotify */
+}
+
+h2 {
+    margin-top: 40px;
+    border-left: 4px solid #1DB954;
+    padding-left: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #1DB954;
+}
+
+/* Listas */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #181818;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+ul li:hover {
+    background-color: #1DB954;
+    color: #000;
+}
+
+/* Artículos */
+article {
+    background-color: #181818;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+article:hover {
+    transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #000;
+    color: #888;
+}
+
+/* Links */
+a {
+    color: #1DB954;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
