@@ -1,7 +1,4 @@
-/* ------------------------------
-   ESTILO GENERAL - SPOTIFY STYLE
---------------------------------*/
-
+/* ESTILO GENERAL */
 body {
     background-color: #121212;
     color: #FFFFFF;
@@ -25,7 +22,7 @@ h1, h2, h3 {
 
 h1 {
     font-size: 3rem;
-    color: #1DB954; /* Verde Spotify */
+    color: #1DB954; 
 }
 
 h2 {
