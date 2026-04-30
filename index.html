@@ -1,195 +1,298 @@
-<!DOCTYPE html>
-<!-- comentario -->
-<!-- CV Web - Ivo Joaquín Johannsen
-   Diseño inspirado en Spotify, con enfoque en IT Helpdesk y soporte técnico.
-   Estructura clara, navegación fácil y estilo moderno. 
-   agregar tarjetas moviles?mas musica?fotos?ni idea-->
+﻿<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Ivo Joaquín Johannsen</title>
-
-        
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-        
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestor CV Spotify - Perfiles demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-</head>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-area">
+          <button class="brand" type="button" id="homeButton" aria-label="Ir al inicio">
+            <span class="brand-mark"><i class="bi bi-soundwave"></i></span>
+            <span>CV Studio</span>
+          </button>
+          <div class="playlist-menu sidebar-profile-menu">
+            <button class="playlist-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#profileList" aria-expanded="true" aria-controls="profileList">
+              <span>CV: <strong id="currentProfileLabel">boss</strong></span>
+              <i class="bi bi-chevron-up"></i>
+            </button>
+            <div class="collapse show" id="profileList">
+              <div class="profile-options" id="profileOptions"></div>
+            </div>
+          </div>
+        </div>
 
-<body>
+        <section class="profile-card">
+          <img class="avatar" id="profilePhoto" src="assets/images/boss.png" alt="Retrato profesional">
+          <h1 id="fullName">Alex Rivera</h1>
+          <p id="sidebarRole">Soporte IT / Helpdesk</p>
+        </section>
 
-<div class="d-flex">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar p-4 d-flex flex-column">
-        <h2 class="mb-4">Mi CV</h2>
-
-        <nav class="nav flex-column">
-            <a class="nav-link" href="#sobre-mi">Sobre mí</a>
-            <a class="nav-link" href="#mentalidad">Mentalidad</a>
-            <a class="nav-link" href="#habilidades">Habilidades</a>
-            <a class="nav-link" href="#experiencia">Experiencia</a>
-            <a class="nav-link" href="#proyectos">Proyectos</a>
-            <a class="nav-link" href="#educacion">Educación</a>
-            <a class="nav-link" href="#contacto">Contacto</a>
-            <a class="nav-link" href="#playlist">Playlist</a>
+        <nav class="nav flex-column side-nav" aria-label="Secciones del CV">
+          <button class="nav-link active" type="button" data-section-target="#tabSobreMi"><i class="bi bi-person-fill"></i>CV base</button>
+          <button class="nav-link" type="button" data-section-target="#tabHabilidades"><i class="bi bi-layers-fill"></i>Habilidades</button>
+          <button class="nav-link" type="button" data-section-target="#tabExperiencia"><i class="bi bi-mortarboard-fill"></i>Experiencia</button>
+          <button class="nav-link" type="button" data-section-target="#tabProyectos"><i class="bi bi-briefcase-fill"></i>Proyectos</button>
+          <button class="nav-link" type="button" data-section-target="#tabEducacion"><i class="bi bi-backpack-fill"></i>Educacion</button>
+          <button class="nav-link" type="button" data-section-target="#tabFormacion"><i class="bi bi-patch-check-fill"></i>Cursos</button>
+          <button class="nav-link" type="button" data-section-target="#tabExtras"><i class="bi bi-stars"></i>Relaciones</button>
         </nav>
 
-        <footer class="mt-auto pt-4">
-            <p class="small text-secondary">© 2026 - Ivo Joaquín Johannsen</p>
-        </footer>
-    </aside>
+        <div class="sidebar-footer">
+          <small>Guardado local con localStorage</small>
+        </div>
+      </aside>
 
-
-    <main class="content flex-grow-1 p-5">
-
-        <!-- HEADER -->
-        <header class="mb-5">
-            <h1>-------</h1>
-            <h2>IT Helpdesk / Soporte Técnico</h2>
-            <p>
-                Técnico IT en formación con experiencia en entornos de alta presión.
-                Disciplina, constancia y capacidad de resolver problemas reales.
-            </p>
+      <main class="main-content" id="inicio">
+        <header class="topbar">
+          <div class="history-buttons" aria-label="Navegacion">
+            <button class="icon-btn" type="button" id="prevProfile" data-bs-toggle="tooltip" data-bs-title="Perfil anterior"><i class="bi bi-chevron-left"></i></button>
+            <button class="icon-btn" type="button" id="nextProfile" data-bs-toggle="tooltip" data-bs-title="Perfil siguiente"><i class="bi bi-chevron-right"></i></button>
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" type="button" id="toggleTheme" data-bs-toggle="tooltip" data-bs-title="Cambiar ambiente"><i class="bi bi-moon-stars-fill"></i></button>
+            <button class="icon-btn" type="button" id="quickImageButton" data-bs-toggle="tooltip" data-bs-title="Cambiar imagen"><i class="bi bi-image-fill"></i></button>
+            <button class="icon-btn danger-icon" type="button" id="deleteProfileButton" data-bs-toggle="tooltip" data-bs-title="Eliminar CV"><i class="bi bi-trash3-fill"></i></button>
+          </div>
         </header>
 
-        <!-- ABOUT ME -->
-        <section id="sobre-mi" class="mb-5 card-section">
-            <h2>Sobre mí</h2>
-            <p>
-                Profesional con experiencia en operaciones aeroportuarias, acostumbrado a trabajar
-                bajo presión y coordinar equipos en tiempo real. En transición al sector IT.
-            </p>
+        <section class="hero">
+          <div>
+            <h2 id="heroName">Alex Rivera</h2>
+            <p class="role" id="heroRole">Soporte IT / Helpdesk</p>
+            <p class="summary" id="profileSummary">Perfil ficticio orientado a soporte tecnico y gestion de incidencias.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-outline-light action-btn" type="button" id="editProfileButton"><i class="bi bi-pencil-square"></i>Editar perfil</button>
+            <button class="btn btn-success action-btn" type="button" id="newProfileButton"><i class="bi bi-plus-lg"></i>Nuevo CV</button>
+          </div>
         </section>
 
-        <!-- MENTALIDAD -->
-        <section id="mentalidad" class="mb-5 card-section">
-            <h2>Mi enfoque</h2>
-            <p>
-                Disciplina y constancia como base. He trabajado en entornos exigentes mientras me formaba en tecnología.
-                En situaciones críticas priorizo la seguridad y la resolución de problemas.
-            </p>
+        <input class="visually-hidden" id="quickImageInput" type="file" accept="image/*">
+
+        <section class="profile-switcher" aria-label="Perfiles de CV disponibles">
+          <div class="row g-3" id="profileCards"></div>
         </section>
 
-        <!-- HABILIDADES -->
-        <section id="habilidades" class="mb-5 card-section">
-            <h2>Habilidades</h2>
+        <ul class="nav nav-tabs section-tabs" id="cvTabs" role="tablist">
+          <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabSobreMi" type="button" role="tab"><i class="bi bi-spotify"></i>CV base</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabHabilidades" type="button" role="tab">Habilidades</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabExperiencia" type="button" role="tab">Experiencia</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabEducacion" type="button" role="tab">Educacion</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabFormacion" type="button" role="tab">Cursos</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabProyectos" type="button" role="tab">Proyectos</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabExtras" type="button" role="tab">Relaciones</button></li>
+        </ul>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Soporte IT</h3>
-                    <ul>
-                        <li>Instalación de sistemas (Windows / Linux)</li>
-                        <li>Diagnóstico de hardware/software</li>
-                        <li>Soporte básico a usuarios</li>
-                        <li>Redes básicas</li>
-                    </ul>
-                </div>
-
-                <div class="col-md-6">
-                    <h3>En formación</h3>
-                    <ul>
-                        <li>HTML, CSS, JavaScript</li>
-                        <li>Python</li>
-                        <li>Bases de datos</li>
-                        <li>Seguridad informática</li>
-                    </ul>
-                </div>
+        <div class="tab-content cv-panels">
+          <section class="tab-pane fade show active" id="tabSobreMi" role="tabpanel" tabindex="0">
+            <div class="content-grid" id="sobre-mi">
+              <article class="panel panel-lift">
+                <h3><i class="bi bi-house-door-fill"></i><span>3. ProfessionalProfile</span></h3>
+                <h4 id="aboutTitle" class="model-subtitle">Soporte IT</h4>
+                <p id="aboutText"></p>
+                <div id="professionalProfileList" class="field-list compact-fields"></div>
+                <div id="keyStats" class="stat-grid"></div>
+              </article>
+              <article class="panel contact-panel panel-lift" id="contacto">
+                <h3><i class="bi bi-envelope-open-fill"></i>2. PersonalInfo</h3>
+                <div id="personalInfoList" class="field-list"></div>
+              </article>
             </div>
-        </section>
-
-        <!-- EXPERIENCIA -->
-        <section id="experiencia" class="mb-5 card-section">
-            <h2>Experiencia</h2>
-
-            <div class="spotify-card">
-                <h3>Aviapartner — Supervisor / Safety</h3>
-                <p>2024 - Actualidad</p>
-                <ul>
-                    <li>Coordinación de operaciones en pista</li>
-                    <li>Gestión de equipos en entornos críticos</li>
-                    <li>Control de seguridad operacional</li>
-                    <li>Resolución de incidencias en tiempo real</li>
-                </ul>
+            <div class="panel panel-lift mt-3">
+              <h3><i class="bi bi-sliders"></i>15. CVProfile</h3>
+              <div id="cvProfileList" class="field-grid"></div>
             </div>
+          </section>
 
-            <div class="spotify-card">
-                <h3>-------</h3>
-                <p>-------</p>
-                <ul>
-                    <li>-------</li>
-                    <li>-------</li>
-                    <li>-------</li>
-                </ul>
+          <section class="tab-pane fade" id="tabHabilidades" role="tabpanel" tabindex="0">
+            <div class="panel panel-lift" id="habilidades">
+              <h3><i class="bi bi-layers-fill"></i>7. Skill</h3>
+              <div class="skill-list" id="skillList"></div>
             </div>
+          </section>
 
-            <div class="spotify-card">
-                <h3>-------</h3>
-                <p>-------</p>
-                <ul>
-                    <li>-------</li>
-                    <li>-------</li>
-                    <li>-------</li>
-                </ul>
+          <section class="tab-pane fade" id="tabExperiencia" role="tabpanel" tabindex="0">
+            <div class="panel panel-lift" id="experiencia">
+              <h3><i class="bi bi-mortarboard-fill"></i>4. WorkExperience</h3>
+              <div class="timeline" id="timeline"></div>
             </div>
-        </section>
+          </section>
 
-        <!-- PROYECTOS -->
-
-        <section id="proyectos" class="mb-5 card-section">
-            <h2>Proyectos</h2>
-
-            <div class="spotify-card">
-                <h3>CV Web</h3>
-                <p>Proyecto personal en HTML, CSS y Bootstrap con diseño tipo app.</p>
+          <section class="tab-pane fade" id="tabEducacion" role="tabpanel" tabindex="0">
+            <div class="panel panel-lift" id="educacion">
+              <h3><i class="bi bi-backpack-fill"></i>5. Education</h3>
+              <div id="educationList" class="education-list"></div>
             </div>
+          </section>
 
-            <div class="spotify-card">
-                <h3>Tienda de ropa web</h3>
-                <p>Web interactiva en desarrollo con JavaScript.</p>
+          <section class="tab-pane fade" id="tabFormacion" role="tabpanel" tabindex="0">
+            <div class="panel panel-lift">
+              <h3><i class="bi bi-patch-check-fill"></i>6. ComplementaryTraining</h3>
+              <div id="trainingList" class="education-list"></div>
             </div>
+          </section>
+
+          <section class="tab-pane fade" id="tabProyectos" role="tabpanel" tabindex="0">
+            <div class="panel panel-lift" id="proyectos">
+              <h3><i class="bi bi-briefcase-fill"></i>9. Project</h3>
+              <div class="row g-3" id="projectList"></div>
+            </div>
+          </section>
+
+          <section class="tab-pane fade" id="tabExtras" role="tabpanel" tabindex="0">
+            <div class="extras-grid" id="extras">
+              <article class="panel panel-lift">
+                <h3><i class="bi bi-translate"></i>8. Language</h3>
+                <div id="languageList" class="education-list"></div>
+              </article>
+              <article class="panel panel-lift">
+                <h3><i class="bi bi-trophy-fill"></i>10. Achievement</h3>
+                <div id="achievementList" class="education-list"></div>
+              </article>
+              <article class="panel panel-lift">
+                <h3><i class="bi bi-heart-fill"></i>11. Volunteering</h3>
+                <div id="volunteeringList" class="education-list"></div>
+              </article>
+              <article class="panel panel-lift">
+                <h3><i class="bi bi-share-fill"></i>12. SocialNetwork / 13. Interest / 14. OtherInfo</h3>
+                <div id="extraInfoList" class="field-list"></div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <section class="player-bar" aria-label="Reproductor visual del CV">
+          <audio id="cvAudio" preload="metadata"></audio>
+          <div class="track-info">
+            <img id="trackCover" src="assets/images/boss.png" alt="Portada de pista">
+            <div>
+              <strong id="trackTitle">Perfil boss</strong>
+              <span id="trackSubtitle">Listo para soporte tecnico</span>
+            </div>
+          </div>
+          <div class="player-controls">
+            <button class="icon-btn" type="button" id="prevProfileBottom" data-bs-toggle="tooltip" data-bs-title="Perfil anterior"><i class="bi bi-skip-backward-fill"></i></button>
+            <button class="play-btn" type="button" id="playPause" aria-label="Pausar o reproducir"><i class="bi bi-play-fill"></i></button>
+            <button class="icon-btn" type="button" id="nextProfileBottom" data-bs-toggle="tooltip" data-bs-title="Perfil siguiente"><i class="bi bi-skip-forward-fill"></i></button>
+          </div>
+          <div class="progress-wrap" aria-hidden="true">
+            <span>0:42</span>
+            <div class="progress">
+              <div class="progress-bar" id="playerProgress"></div>
+            </div>
+            <span>-1:58</span>
+          </div>
+          <button class="btn btn-success export-btn" type="button" id="printCv"><i class="bi bi-download"></i>Exportar PDF</button>
         </section>
+      </main>
+    </div>
 
-        <!-- EDUCACION -->
-        <section id="educacion" class="mb-5 card-section">
-            <h2>Educación</h2>
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <form class="modal-content profile-form" id="profileForm">
+          <input type="hidden" id="formProfileId">
+          <input type="hidden" id="formImageData">
+          <div class="modal-header">
+            <div>
+              <p class="form-kicker">Editor visual</p>
+              <h2 class="modal-title fs-5" id="profileModalLabel">Nuevo CV completo</h2>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-layout">
+              <aside class="image-editor">
+                <img id="formImagePreview" src="assets/images/boss.png" alt="Previsualizacion del perfil">
+                <label class="btn btn-outline-light w-100" for="formImageInput"><i class="bi bi-image"></i>Cambiar imagen</label>
+                <input class="visually-hidden" id="formImageInput" type="file" accept="image/*">
+                <input class="form-control form-control-color" id="formAccent" type="color" value="#1ed760" title="Color de acento">
+              </aside>
 
-            <ul>
-                <li>-------</li>
-                <li>-------</li>
-                <li>-------</li>
-            </ul>
-        </section>
+              <div class="form-sections">
+                <section class="form-section">
+                  <h3>Datos principales</h3>
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label class="form-label" for="formProfileName">Nombre del perfil</label>
+                      <input class="form-control" id="formProfileName" required placeholder="boss, helpdesk, frontend">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="formFirstName">Nombre</label>
+                      <input class="form-control" id="formFirstName" required>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label" for="formLastName">Apellidos</label>
+                      <input class="form-control" id="formLastName" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="formProfession">Profesion / titulo</label>
+                      <input class="form-control" id="formProfession" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label" for="formObjective">Objetivo</label>
+                      <input class="form-control" id="formObjective">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label" for="formSummary">Resumen profesional</label>
+                      <textarea class="form-control" id="formSummary" rows="3" required></textarea>
+                    </div>
+                  </div>
+                </section>
 
-        <!-- CONTACTO -->
-        <section id="contacto" class="mb-5 card-section">
-            <h2>Contacto</h2>
+                <section class="form-section">
+                  <h3>Contacto</h3>
+                  <div class="row g-3">
+                    <div class="col-md-4"><label class="form-label" for="formEmail">Email</label><input class="form-control" id="formEmail" type="email"></div>
+                    <div class="col-md-4"><label class="form-label" for="formPhone">Telefono</label><input class="form-control" id="formPhone"></div>
+                    <div class="col-md-4"><label class="form-label" for="formLocation">Ubicacion</label><input class="form-control" id="formLocation" placeholder="Madrid, Espana"></div>
+                    <div class="col-md-4"><label class="form-label" for="formLinkedin">LinkedIn</label><input class="form-control" id="formLinkedin" type="url"></div>
+                    <div class="col-md-4"><label class="form-label" for="formGithub">GitHub</label><input class="form-control" id="formGithub" type="url"></div>
+                    <div class="col-md-4"><label class="form-label" for="formPortfolio">Portfolio / web</label><input class="form-control" id="formPortfolio" type="url"></div>
+                  </div>
+                </section>
 
-            <ul>
-                <li>Email: -------</li>
-                <li>Teléfono: -------</li>
-                <li>LinkedIn: pendiente</li>
-                <li>GitHub: pendiente</li>
-            </ul>
-        </section>
+                <section class="form-section">
+                  <h3>Contenido del CV</h3>
+                  <div class="helper-grid">
+                    <label>Experiencia<textarea class="form-control" id="formExperience" rows="5" placeholder="Puesto | Empresa | Ubicacion | Inicio | Fin | Descripcion y logros"></textarea></label>
+                    <label>Educacion<textarea class="form-control" id="formEducation" rows="5" placeholder="Titulo | Centro | Ubicacion | Inicio | Fin"></textarea></label>
+                    <label>Proyectos<textarea class="form-control" id="formProjects" rows="5" placeholder="Nombre | Tecnologias | Link | Descripcion"></textarea></label>
+                    <label>Cursos / certificaciones<textarea class="form-control" id="formTraining" rows="5" placeholder="Tipo | Nombre | Entidad | Fecha | Descripcion"></textarea></label>
+                    <label>Habilidades tecnicas<textarea class="form-control" id="formTechnicalSkills" rows="4" placeholder="Windows, Redes, JavaScript"></textarea></label>
+                    <label>Habilidades blandas<textarea class="form-control" id="formSoftSkills" rows="4" placeholder="Comunicacion, Liderazgo, Resolucion de problemas"></textarea></label>
+                    <label>Idiomas<textarea class="form-control" id="formLanguages" rows="4" placeholder="Espanol | Nativo | No aplica"></textarea></label>
+                    <label>Logros / extras<textarea class="form-control" id="formAchievements" rows="4" placeholder="Titulo | Tipo | Fecha | Descripcion"></textarea></label>
+                  </div>
+                </section>
 
-        <!-- PLAYLIST -->
-        <section id="playlist" class="mb-5 card-section">
-            <h2>Playlist</h2>
+                <section class="form-section">
+                  <h3>Preferencias</h3>
+                  <div class="row g-3">
+                    <div class="col-md-4"><label class="form-label" for="formAvailability">Disponibilidad</label><input class="form-control" id="formAvailability" placeholder="Inmediata"></div>
+                    <div class="col-md-4"><label class="form-label" for="formRemote">Teletrabajo</label><input class="form-control" id="formRemote" placeholder="Hibrido / remoto"></div>
+                    <div class="col-md-4"><label class="form-label" for="formSalary">Expectativa salarial</label><input class="form-control" id="formSalary" placeholder="A convenir"></div>
+                    <div class="col-12"><label class="form-label" for="formNotes">Notas</label><textarea class="form-control" id="formNotes" rows="2"></textarea></div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i>Cancelar</button>
+            <button type="submit" class="btn btn-success"><i class="bi bi-check2-circle"></i>Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-            <section id="playlist" class="mb-5 card-section">
-                <h2>Playlist</h2>
-
-                 <audio controls style="width:100%; border-radius:12px;">
-                      <source src="/proyectoCV-Spotify/efects/artmylife-powerful-dramatic-trailer-514242.mp3" type="audio/mpeg">
-                     
-                     </audio>
-            </section>
-
-    </main>
-
-</div>
-
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
+
