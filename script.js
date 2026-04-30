@@ -2,7 +2,7 @@
 const ID_USUARIO = "usuario_demo";
 const PISTA_AUDIO = "assets/sound/artmylife-powerful-dramatic-trailer-514242.mp3";
 
-
+//datos artificiales, etc
 
 const perfilesPorDefecto = [
   crearSemillaPerfil({
